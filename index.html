@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission: Save the Monsoon Village</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="weather-layer" aria-hidden="true">
+    <div class="cloud cloud-a"></div>
+    <div class="cloud cloud-b"></div>
+    <div class="cloud cloud-c"></div>
+    <div class="rain"></div>
+    <div class="leaf leaf-a"></div>
+    <div class="leaf leaf-b"></div>
+    <div class="leaf leaf-c"></div>
+  </div>
+
+  <main class="app-shell">
+    <section id="homeScreen" class="screen home-screen active" aria-label="Title screen">
+      <div class="hero-panel">
+        <h1>Mission: Save the Monsoon Village</h1>
+        <p class="subtitle">Interactive Disaster Management Simulator</p>
+        <p class="hero-copy">Lead a village response team through flooding, contaminated water, power loss, damaged homes, and stranded animals. Every decision changes the rescue report.</p>
+        <div class="hero-actions">
+          <button id="startButton" class="primary-button">Start Mission</button>
+          <button id="instructionsButton" class="ghost-button">Instructions</button>
+          <button id="creditsButton" class="ghost-button">Credits</button>
+          <button id="soundToggleHome" class="icon-button" aria-label="Toggle sound" title="Toggle sound">Sound Off</button>
+        </div>
+      </div>
+      <div class="village-preview" aria-hidden="true">
+        <div class="preview-sun"></div>
+        <div class="preview-hill"></div>
+        <div class="preview-river"></div>
+        <div class="preview-house house-one"></div>
+        <div class="preview-house house-two"></div>
+        <div class="preview-school"></div>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen game-screen" aria-label="Simulator">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Monsoon Village Command Center</p>
+          <h2>Disaster Response Leader</h2>
+        </div>
+        <div class="topbar-actions">
+          <button id="soundToggleGame" class="icon-button" aria-label="Toggle sound" title="Toggle sound">Sound Off</button>
+        </div>
+      </header>
+
+      <section class="dashboard" aria-label="Live village dashboard">
+        <article class="metric-card" data-stat="villagers">
+          <span class="metric-icon">People</span>
+          <p>Villagers Safe</p>
+          <strong id="statVillagers">62%</strong>
+          <div class="meter"><span></span></div>
+        </article>
+        <article class="metric-card" data-stat="houses">
+          <span class="metric-icon">Homes</span>
+          <p>Houses Protected</p>
+          <strong id="statHouses">48%</strong>
+          <div class="meter"><span></span></div>
+        </article>
+        <article class="metric-card" data-stat="water">
+          <span class="metric-icon">Water</span>
+          <p>Clean Water</p>
+          <strong id="statWater">40%</strong>
+          <div class="meter"><span></span></div>
+        </article>
+        <article class="metric-card" data-stat="animals">
+          <span class="metric-icon">Rescue</span>
+          <p>Animals Rescued</p>
+          <strong id="statAnimals">35%</strong>
+          <div class="meter"><span></span></div>
+        </article>
+        <article class="metric-card" data-stat="electricity">
+          <span class="metric-icon">Power</span>
+          <p>Electricity</p>
+          <strong id="statElectricity">28%</strong>
+          <div class="meter"><span></span></div>
+        </article>
+        <article class="metric-card" data-stat="environment">
+          <span class="metric-icon">Eco</span>
+          <p>Environment</p>
+          <strong id="statEnvironment">70%</strong>
+          <div class="meter"><span></span></div>
+        </article>
+        <article class="metric-card" data-stat="happiness">
+          <span class="metric-icon">Care</span>
+          <p>Village Happiness</p>
+          <strong id="statHappiness">50%</strong>
+          <div class="meter"><span></span></div>
+        </article>
+        <article class="metric-card score-card" data-stat="score">
+          <span class="metric-icon">Score</span>
+          <p>Overall Score</p>
+          <strong id="statScore">0</strong>
+          <div class="meter"><span></span></div>
+        </article>
+      </section>
+
+      <section class="mission-zone">
+        <aside class="briefing-panel">
+          <p class="eyebrow">Emergency Alert</p>
+          <h3>Heavy rain has damaged roads, homes, farms, and water sources.</h3>
+          <p>Choose a location on the village map. Complete all eight response missions to generate your rescue report.</p>
+          <div class="progress-block">
+            <span id="missionProgressText">0 of 8 missions complete</span>
+            <div class="progress-bar"><span id="missionProgressBar"></span></div>
+          </div>
+          <button id="reportButton" class="primary-button small" disabled>Generate Final Report</button>
+        </aside>
+
+        <div class="map-panel" aria-label="Interactive village map">
+          <div class="map-sky"></div>
+          <div class="map-forest"></div>
+          <div class="map-river"><span></span></div>
+          <button class="map-location houses" data-mission="houses" aria-label="Houses mission">
+            <span class="building house-icon"></span>
+            <strong>Houses</strong>
+          </button>
+          <button class="map-location river" data-mission="river" aria-label="River mission">
+            <span class="building river-icon"></span>
+            <strong>River</strong>
+          </button>
+          <button class="map-location bridge" data-mission="bridge" aria-label="Bridge mission">
+            <span class="building bridge-icon"></span>
+            <strong>Bridge</strong>
+          </button>
+          <button class="map-location school" data-mission="school" aria-label="School mission">
+            <span class="building school-icon"></span>
+            <strong>School</strong>
+          </button>
+          <button class="map-location health" data-mission="health" aria-label="Health centre mission">
+            <span class="building health-icon"></span>
+            <strong>Health Centre</strong>
+          </button>
+          <button class="map-location animals" data-mission="animals" aria-label="Animal shelter mission">
+            <span class="building animal-icon"></span>
+            <strong>Animal Shelter</strong>
+          </button>
+          <button class="map-location power" data-mission="power" aria-label="Power station mission">
+            <span class="building power-icon"></span>
+            <strong>Power Station</strong>
+          </button>
+          <button class="map-location forest" data-mission="forest" aria-label="Forest mission">
+            <span class="building forest-icon"></span>
+            <strong>Forest</strong>
+          </button>
+        </div>
+      </section>
+    </section>
+
+    <section id="reportScreen" class="screen report-screen" aria-label="Final rescue report">
+      <div class="report-card">
+        <p class="eyebrow">Final Rescue Report</p>
+        <h2 id="ratingTitle">Village Status</h2>
+        <p id="ratingSummary" class="report-summary"></p>
+        <div id="reportStats" class="report-grid"></div>
+        <div>
+          <h3>Achievements Earned</h3>
+          <div id="achievementList" class="achievement-list"></div>
+        </div>
+        <div class="report-actions">
+          <button id="playAgainButton" class="primary-button">Replay Mission</button>
+          <button id="reviewChoicesButton" class="ghost-button">Review Choices</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modalOverlay" class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button id="modalClose" class="modal-close" aria-label="Close dialog">Close</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
